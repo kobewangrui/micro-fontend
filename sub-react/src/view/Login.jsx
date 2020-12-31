@@ -29,7 +29,6 @@ export default class Login extends Component {
 		}
 	}
     UNSAFE_componentWillMount(){
-		this.login();
 	}
 	getCode = event=>{
 		let seconds = 60
@@ -97,7 +96,9 @@ export default class Login extends Component {
 			channel:"web"
 		}).then(res=>{
 			if(res.code==='000000'){
+				window.localStorage.setItem('user',res.data)
 				message.success(res.msg)
+				this.props.history.push('/')
 			}else{
 				message.error(res.msg)
 			}
@@ -234,7 +235,7 @@ export default class Login extends Component {
 											<img src={this.state.pwdToggle?pwdhide:pwdshow} className='eyeImg' onClick={this.eyeToggle}/>
 										</p>
 										<p>
-											<button>登录</button>
+											<button onClick={this.login}>登录</button>
 										</p>
 									</div>
 								</TabPane>
