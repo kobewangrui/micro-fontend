@@ -1,0 +1,81 @@
+.menusContent{
+	font-weight:bold;
+	min-width: 860px;
+	.el-dropdown-link{
+		color: #409eff;
+		cursor: pointer;
+	}
+	.coverInput{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
+}
+.menuList{
+	li{
+		padding: 0 10px;
+		width: 100%;
+		min-width: 53px;
+		line-height: 53px;
+		border-bottom: 1px solid rgb(235,238,245);
+		>ul{
+			display: none;
+		}
+		>span{
+		display: inline-block;
+		width: 18%;
+		}
+	}
+	.title{
+		background:rgba(247,247,247);
+		>span{
+			color: #000;
+			font-size: 14px;
+			font-weight:bold;
+		}
+	}
+
+	.secondMenu,
+	.thirdMenu,
+	.fourthMenu{
+		-webkit-transition: all 1s!important;
+		>li{
+			width: 100%;
+			>span:first-child{
+				display: inline-block;
+				width: 18%;
+				box-sizing: border-box;
+			}
+			>span{
+				display: inline-block;
+				width: 18%;
+			}
+		}
+	}
+	.menuList>li>span:first-child{
+		padding-left: 15px;
+	}
+	.secondMenu>li>span:first-child{
+		padding-left: 15px;
+
+	}
+	.thirdMenu>li>span:first-child{
+		padding-left: 30px;
+
+	}
+	.fourthMenu>li>span:first-child{
+		padding-left: 45px;
+
+	}
+	.openMenu{
+		display: inline-block;
+		width: 10px;
+		height: 10px;
+		border: 1px solid #999;
+		color: #999;
+		line-height: 9px;
+		text-align: center;
+		margin-right: 5px;
+		cursor: pointer;
+	}
+}

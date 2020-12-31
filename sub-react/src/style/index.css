@@ -1,0 +1,16 @@
+.background1{
+  height: calc(100vh);
+}
+.logo{
+  width: 200px;
+  height:59px;
+  background: url('../assets/image/loginlogo.png');
+  background-repeat: no-repeat;
+}
+.trigger{
+  color:#fff;margin-left: 20px;
+}
+/* .site-layout-background > .ant-layout-sider-children > .ant-menu{
+  background:rgba(55,61,65,1) !important;
+box-shadow: 2px 0px 6px 0px rgba(0,21,41,0.35);
+} */

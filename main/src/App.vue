@@ -1,16 +1,8 @@
 <template>
-  <div class="layout-wrapper">
-    <div class="layout-header">
-      <div class="logo">QIANKUN-EXAMPLE</div>
-      <ul class="sub-apps">
-        <li v-for="item in microApps" :class="{active: item.activeRule === current}" :key="item.name" @click="goto(item)">{{ item.name }}</li>
-      </ul>
-      <div class="userinfo">主应用的state：{{ JSON.stringify(user) }}</div>
-    </div>
-    <div id="subapp-viewport"></div>
+  <div class="webOuter">
+      <div id="subapp-viewport"></div>
   </div>
 </template>
-
 <script>
 import NProgress from 'nprogress'
 import microApps from './micro-app'
@@ -21,28 +13,19 @@ export default {
     return {
       isLoading: true,
       microApps,
-      current: '/sub-vue/'
+      current: '/'
     }
   },
-  computed: {
-    user () {
-      return store.getGlobalState('user')
-    }
+  created () {
+    this.bindCurrent()
+    NProgress.start()
   },
-  watch: {
-    isLoading (val) {
-      if (val) {
-        NProgress.start()
-      } else {
-        this.$nextTick(() => {
-          NProgress.done()
-        })
-      }
-    }
+  mounted () {
+    this.listenRouterChange()
   },
-  components: {},
   methods: {
     goto (item) {
+      this.isShowProject = true;
       history.pushState(null, item.activeRule, item.activeRule)
       // this.current = item.name
     },
@@ -74,52 +57,35 @@ export default {
       })
     }
   },
-  created () {
-    this.bindCurrent()
-    NProgress.start()
+  computed: {
+    user () {
+      return store.getGlobalState('user')
+    }
   },
-  mounted () {
-    this.listenRouterChange()
-  }
+  watch: {
+    isLoading (val) {
+      if (val) {
+        NProgress.start()
+      } else {
+        this.$nextTick(() => {
+          NProgress.done()
+        })
+      }
+    }
+  },
+  components: {
+  },
 }
 </script>
 
 <style lang="scss">
-html, body{
+*{
   margin: 0 !important;
   padding: 0;
 }
 .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
-  .layout-wrapper{
-    .layout-header{
-      height: 50px;
-      width: 100%;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      line-height: 50px;
-      position: relative;
-     .logo {
-        float: left;
-        margin: 0 50px;
-      }
-      .sub-apps {
-        list-style: none;
-        margin: 0;
-        li{
-          list-style: none;
-          display: inline-block;
-          padding: 0 20px;
-          cursor: pointer;
-          &.active{
-            color: #42b983;
-            text-decoration: underline;
-          }
-        }
-      }
-      .userinfo{
-        position: absolute;
-        right: 100px;
-        top: 0;
-      }
-    }
-  }
+.webOuter{
+  width: 100%;
+  height: 100%;
+}
 </style>
